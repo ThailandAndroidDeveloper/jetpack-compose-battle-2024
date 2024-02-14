@@ -17,7 +17,7 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 private fun Easy2Screen(uiState: UiState) {
     // TODO
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Easy 2")
+        Text(text = "Easy 2 2")
     }
 }
 
