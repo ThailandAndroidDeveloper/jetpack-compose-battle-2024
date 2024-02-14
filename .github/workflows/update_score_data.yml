@@ -2,7 +2,8 @@ name: calculate screen score with compose battle 2024
 run-name: Run Dashboard Script by ${{ github.actor }}
 
 on:
-  push:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
   workflow_dispatch:
     inputs:
       dir_path:
