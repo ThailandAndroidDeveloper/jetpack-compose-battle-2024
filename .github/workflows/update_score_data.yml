@@ -1,0 +1,40 @@
+name: calculate screen score with compose battle 2024
+run-name: Run Dashboard Script by ${{ github.actor }}
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      dir_path:
+        type: string
+        description: Directory path that store all tests
+        required: true
+
+jobs:
+  build-debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: gradle
+      - name: run paparazzi
+        run: ./gradlew verifyPaparazziDebug
+        continue-on-error: true
+      - name: set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: install python firebase_admin
+        run: python -m pip install firebase_admin
+      - name: use Firebase credentials
+        env:
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+        run: |
+          echo "$FIREBASE_CREDENTIALS" | base64 -di > firebase-admin-sdk.json
+      - name: run python script
+        run: python -u ./scripts/read_and_update_user_score.py ${{github.actor}} "./screenshot-test/diff"
