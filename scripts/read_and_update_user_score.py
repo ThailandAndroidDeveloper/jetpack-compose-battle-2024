@@ -146,14 +146,37 @@ def create_user_score_json(username, assignment_results):
         'assignments': calculated_score_assignments
     })
 
-def upload_firestore(username, user_score_json):
-    cred = credentials.Certificate('firebase-admin-sdk.json')
-    firebase_admin.initialize_app(cred)
-    db = firestore.client()
 
-    document = db.collection('user_score').document(username)
-    document.set(json.loads(user_score_json), True)
-    document.update({'timestamp': firestore.SERVER_TIMESTAMP})
+def is_firestore_ready():
+    try:
+        cred = credentials.Certificate('firebase-admin-sdk.json')
+        firebase_admin.initialize_app(cred)
+        return True
+    except Exception as e:
+        print(f'Error initializing Firestore client: {e}')
+        return False
+
+def upload_firestore(username, user_score_json):
+    if not is_firestore_ready():
+        print('Firestore is not ready. Upload operation aborted.')
+        return
+
+    db = firestore.client()
+    doc_ref = db.collection('user_score').document(username)
+
+    try:
+        doc_ref.set(json.loads(user_score_json), merge=True)
+        print(f'Upload for {username} successfully set.')
+    except Exception as e:
+        print(f'Error uploading for {username}: {e}')
+        return
+    doc_ref.update({'timestamp': firestore.SERVER_TIMESTAMP})
+
+    document = doc_ref.get()
+    if document.exists:
+        print(f'Data for {username}: {document.to_dict()}')
+    else:
+        print(f'No data found for {username}')
 
 
 # Run script - python ./scripts/read_and_update_user_score.py <username> <dir_path>
