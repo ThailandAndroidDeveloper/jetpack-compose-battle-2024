@@ -19,7 +19,7 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Easy1Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
+    Box(modifier = Modifier.fillMaxSize()) {
         Text(text = "Easy 1")
     }
 }
