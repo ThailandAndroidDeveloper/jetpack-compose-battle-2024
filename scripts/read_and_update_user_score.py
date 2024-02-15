@@ -149,9 +149,15 @@ def create_user_score_json(username, assignment_results):
 
 def is_firestore_ready():
     try:
-        cred = credentials.Certificate('firebase-admin-sdk.json')
+        cred = credentials.Certificate('./app/firebase-admin-sdk.json')
         firebase_admin.initialize_app(cred)
         return True
+    except FileNotFoundError:
+        print('Error: JSON file \'firebase-admin-sdk.json\' not found.')
+        return False
+    except ValueError as ve:
+        print(f'Error parsing JSON: {ve}')
+        return False
     except Exception as e:
         print(f'Error initializing Firestore client: {e}')
         return False

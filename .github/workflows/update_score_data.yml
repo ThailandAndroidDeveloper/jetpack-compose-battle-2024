@@ -36,6 +36,6 @@ jobs:
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
         run: |
-          echo "$FIREBASE_CREDENTIALS" | base64 -di > firebase-admin-sdk.json
+          echo "$FIREBASE_CREDENTIALS" | base64 -di > ./app/firebase-admin-sdk.json
       - name: run python script
         run: python -u ./scripts/read_and_update_user_score.py ${{github.actor}} "./screenshot-test/diff"
