@@ -16,7 +16,7 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Easy2Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
         Text(text = "Easy 2 2")
     }
 }
