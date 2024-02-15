@@ -10,7 +10,7 @@
 Jetpack Compose Battle เป็นงานแข่งขันที่จะให้นักพัฒนาแอนดรอยด์ในประเทศไทยแข่งกันสร้าง UI ด้วย Jetpack Compose ที่เป็น UI Framework ตัวใหม่ล่าสุดทางทีมแอนดรอยด์
 
 ## รายละเอียดสำหรับรอบชิงชนะเลิศ
-* TBD
+* TBD.
 
 ## ของรางวัล
 * อันดับที่ 1 Android Mini Collectible @Work Series - Tech Support / IT / Engineer
