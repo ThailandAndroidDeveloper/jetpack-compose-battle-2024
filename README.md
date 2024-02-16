@@ -96,6 +96,8 @@ Additionally, all finalists will receive special gifts from MuvMi.
 * Android Studio Hedgehog 2023.1.1 Patch 1 (Latest Stable)
 * Embedded JDK (JBR 17.0.7)
 
+* Bam Bam Bam Bam Bam Test
+
 ## Sponsors
 * [MuvMi](https://muvmi.co/)
 * [LINE MAN Wongnai](https://lmwn.com/)
