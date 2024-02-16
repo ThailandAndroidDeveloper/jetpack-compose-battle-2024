@@ -1,9 +1,9 @@
+![Event Cover](image%2Fevent-header.jpg)
+
 # Jetpack Compose Battle - Final Round
 [English at below](#english)
 
 ---
-
-# Thai
 # รายละเอียดสำหรับการแข่งขัน Jetpack Compose Battle ในรอบสุดท้าย
 ## สิ่งที่ผู้เข้าแข่งขันจะต้องทำ
 * นำ Laptop มาด้วยตัวเอง
