@@ -26,6 +26,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -189,6 +190,19 @@ private fun Medium1Screen(uiState: UiState) {
                                             text = act.content,
                                             style = MaterialTheme.typography.bodyLarge,
                                         )
+                                    }
+                                    if (act.progress != null) {
+                                        Spacer(modifier = Modifier.height(16.dp))
+                                        LinearProgressIndicator(
+                                            modifier = Modifier.fillMaxWidth()
+                                        )
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                        Box(
+                                            Modifier.fillMaxWidth(),
+                                            contentAlignment = Alignment.CenterEnd
+                                        ) {
+                                            Text(text = act.progress.text)
+                                        }
                                     }
                                     Box(
                                         Modifier.fillMaxWidth()
