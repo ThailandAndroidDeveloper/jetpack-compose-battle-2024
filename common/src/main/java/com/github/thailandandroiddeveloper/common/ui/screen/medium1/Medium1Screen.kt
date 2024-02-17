@@ -2,23 +2,117 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.SurfaceContainerLowest
+import com.github.thailandandroiddeveloper.common.ui.theme.Typography
 
 @Composable
 private fun Medium1Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
+    Scaffold(
+        bottomBar = {
+            BottomAppBar {
+
+            }
+        }
+    ) { paddingValues ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            item(key = 0) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.tertiaryContainer)
+                        .padding(
+                            top = 34.dp,
+                            start = 32.dp,
+                            end = 32.dp,
+                            bottom = 16.dp
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(
+                        text = uiState.title,
+                        style = Typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onTertiaryContainer
+                    )
+                    Text(
+                        text = uiState.subtitle,
+                        style = Typography.bodyLarge,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                    Row(
+                        modifier = Modifier
+                            .background(
+                                color = SurfaceContainerLowest,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        horizontalArrangement = Arrangement.spacedBy(42.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(start = 16.dp),
+                            text = uiState.searchHint,
+                            style = Typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                        Box(
+                            modifier = Modifier
+                                .padding(
+                                    top = 4.dp,
+                                    end = 4.dp,
+                                    bottom = 4.dp
+                                )
+                                .size(32.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.tertiary,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                        ) {
+                            Icon(
+                                modifier = Modifier.padding(4.dp),
+                                painter = painterResource(id = R.drawable.ic_medium_1_search),
+                                contentDescription = "Search",
+                                tint = MaterialTheme.colorScheme.onTertiary
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
