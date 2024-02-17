@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -71,9 +73,26 @@ private fun Hard1Screen(uiState: UiState) {
                             ItemWithReward(it.icon, it.text)
                         }
                         is Card.Suggestion -> {
-                            ItemSuggestion(it.text)
+                            ItemSuggestion(it.text, it.moreIcon)
                         }
                     }
+                }
+            }
+        } else {
+            Box(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(start = 32.dp, bottom = 40.dp)
+                        .background(MaterialTheme.colorScheme.background, RoundedCornerShape(12.dp))
+                        .width(156.dp)
+                        .height(337.dp)
+                        .padding(vertical = 10.dp, horizontal = 8.dp)
+                ) {
+                    uiState.primaryMenus[0].menus.forEach {
+                        MenuItem(primaryMenu = it, isSelect = it.text == "Home")
+                    }
+                    Divider(Modifier.size(124.dp, 1.dp))
                 }
             }
         }
@@ -81,7 +100,33 @@ private fun Hard1Screen(uiState: UiState) {
 }
 
 @Composable
-private fun ItemSuggestion(text: String) {
+private fun MenuItem(primaryMenu: PrimaryMenu.Item, isSelect: Boolean) {
+    val bg = if (isSelect) {
+        MaterialTheme.colorScheme.primaryContainer
+    } else {
+        MaterialTheme.colorScheme.background
+    }
+    Row(
+        modifier = Modifier
+            .size(width = 140.dp, height = 44.dp)
+            .padding(bottom = 8.dp)
+            .background(bg, RoundedCornerShape(8.dp))
+    ) {
+        Image(
+            modifier = Modifier.size(32.dp),
+            painter = painterResource(id = primaryMenu.icon), contentDescription = null)
+        Text(
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
+            text = primaryMenu.text,
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary
+        )
+
+    }
+}
+
+@Composable
+private fun ItemSuggestion(text: String, icon: Int) {
     Row(
         Modifier
             .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -89,9 +134,27 @@ private fun ItemSuggestion(text: String) {
             .background(MaterialTheme.colorScheme.primaryContainer)
             .height(80.dp)
             .fillMaxWidth()
-            .padding(9.dp)
+            .padding(16.dp)
     ) {
-
+        Text(
+            modifier = Modifier.width(284.dp),
+            text = text,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            modifier = Modifier.padding(start = 8.dp, top = 12.dp, bottom = 12.dp),
+            text = "More",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.primary,
+            overflow = TextOverflow.Ellipsis
+        )
+        Image(
+            modifier = Modifier
+                .padding(start = 5.dp)
+                .padding(vertical = 32.dp),
+            painter = painterResource(icon), contentDescription = null)
     }
 }
 
@@ -115,6 +178,8 @@ private fun ItemWithReward(icon: Int, text: String) {
         Text(
             modifier = Modifier.padding(start = 8.dp, top = 5.dp),
             text = text,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onPrimaryContainer
         )
     }
 }
@@ -137,7 +202,9 @@ private fun ItemWithImage(
         Text(
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 20.dp),
             text = text,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onPrimaryContainer
         )
     }
 }

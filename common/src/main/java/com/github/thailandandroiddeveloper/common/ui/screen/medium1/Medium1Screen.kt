@@ -4,22 +4,64 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
+import java.util.concurrent.CountDownLatch
 
 @Composable
 private fun Medium1Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
-    }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(232.dp)
+                    .background(MaterialTheme.colorScheme.tertiaryContainer)
+            ) {
+                Row(modifier = Modifier
+                    .padding(horizontal = 85.dp)
+                    .padding(top = 176.dp, bottom = 16.dp)
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .background(MaterialTheme.colorScheme.onTertiary, RoundedCornerShape(8.dp))
+                ) {}
+            }
+
+        },
+        content = { innerPadding ->
+                  Column(modifier = Modifier.padding(innerPadding)) {
+
+                  }
+        },
+        bottomBar = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .background(MaterialTheme.colorScheme.tertiaryContainer)
+            ) {
+
+            }
+        }
+    )
 }
 
 @Preview(group = Pixel7.name, device = Pixel7.spec, showBackground = true)

@@ -3,7 +3,9 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,9 +17,10 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
 @Composable
 private fun Easy2Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 2")
+    Column(modifier = Modifier.fillMaxSize()
+        .background(MaterialTheme.colorScheme.onTertiary)
+    ) {
+
     }
 }
 
