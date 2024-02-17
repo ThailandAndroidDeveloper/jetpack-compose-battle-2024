@@ -1,5 +1,6 @@
 package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
+import android.widget.ProgressBar
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.BorderStroke
@@ -28,6 +29,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -40,6 +42,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -241,7 +244,25 @@ private fun Medium1Screen(uiState: UiState) {
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 if (activity.progress != null) {
-
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                    LinearProgressIndicator(
+                                        progress = activity.progress.value,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(8.dp),
+                                        strokeCap = StrokeCap.Round,
+                                        color = MaterialTheme.colorScheme.outline,
+                                        trackColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.25f)
+                                    )
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        text = activity.progress.text,
+                                        style = Typography.labelMedium,
+                                        color = MaterialTheme.colorScheme.tertiary,
+                                        textAlign = TextAlign.End
+                                    )
+                                    Spacer(modifier = Modifier.height(4.dp))
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
