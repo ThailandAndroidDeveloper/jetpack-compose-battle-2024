@@ -44,6 +44,7 @@
 * การแข่งขันจะสิ้นสุดตอน 18.00 น.
 * ประกาศผลผู้ชนะตอน 18.30 น.
 
+
 ## เกี่ยวกับโปรเจคที่ใช้ในการแข่งขัน
 * โค้ดสำหรับการแข่งขัน
    * ใช้โปรเจคจาก https://github.com/ThailandAndroidDeveloper/jetpack-compose-battle-2024-competition
@@ -202,3 +203,7 @@
 ## Sponsors
 * [MuvMi](https://muvmi.co/)
 * [LINE MAN Wongnai](https://lmwn.com/)
+
+
+Narattarwan P. (BEE)
+
