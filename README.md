@@ -34,8 +34,7 @@
 ## การเตรียมตัวสำหรับการแข่งขัน
 * เริ่มลงทะเบียนตั้งแต่ 15.00 - 15.30 น.
 * ทีมงานจะแจ้งกติกาและเงื่อนไขในการแข่งขันให้ทราบตอน 15.30 น.
-* การเตรียมตัวสำหรับการแข่งขันจะเริ่มขึ้นตอน 16.00 น.
-   * Fork Git Repository ที่ใช้แข่งขัน
+* การเตรียมตัวสำหรับการแข่งขันจะเริ่มขึ้นตอน 16.00 น. 
    * Clone และสร้าง Branch ใหม่ที่กำหนดเป็นชื่อของตัวเอง
       * ใช้เป็นตัวพิมพ์เล็กทั้งหมด
       * ยกตัวอย่างเช่น “Somkiat” ก็ให้ตั้งชื่อ Branch ว่า `somkiat`
@@ -136,8 +135,7 @@
 ## Preparation for the Competition
 * Registration starts from 3:00 PM to 3:30 PM.
 * The staff will inform participants of the rules and conditions of the competition at 3:30 PM.
-* Preparation for the competition will begin at 4:00 PM.
-   * Fork the competition's Git Repository.
+* Preparation for the competition will begin at 4:00 PM. 
    * Clone and create a new branch with your with name
       * Use all lowercase letters and no spaces.
       * For example, if your name is "Somkiat", name your branch `somkiat`.
