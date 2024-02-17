@@ -2,23 +2,76 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+
 @Composable
 private fun Medium1Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(232.dp)
+                .background(Color(0xFFFFD8E4))
+        ) {
+            Text(
+                text = uiState.title,
+                style = TextStyle(
+                    fontSize = 28.sp,
+                    letterSpacing = 0.5.sp,
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .padding(top = 34.dp)
+                    .padding(horizontal = 32.dp)
+                    .fillMaxWidth()
+            )
+            Text(
+                text = uiState.subtitle,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    color = Color(0xFF7D5260),
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .padding(horizontal = 32.dp)
+                    .padding(top = 88.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .padding(top = 176.dp)
+                    .width(241.dp)
+                    .height(40.dp)
+                    .background(Color.White, shape = RoundedCornerShape(8.dp))
+                    .align(Alignment.TopCenter)
+
+            )
+        }
     }
 }
 
