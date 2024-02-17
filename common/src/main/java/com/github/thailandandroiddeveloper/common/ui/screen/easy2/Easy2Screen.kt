@@ -71,7 +71,7 @@ private fun Easy2Screen(uiState: UiState) {
                             top = 8.dp,
                             start = 32.dp,
                             end = 32.dp,
-                            bottom = 16.dp
+                            bottom = 20.dp
                         ),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -87,7 +87,7 @@ private fun Easy2Screen(uiState: UiState) {
                         painter = painterResource(id = uiState.profileImage),
                         contentDescription = "Profile image"
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = uiState.displayName,
                         style = Typography.titleLarge,
