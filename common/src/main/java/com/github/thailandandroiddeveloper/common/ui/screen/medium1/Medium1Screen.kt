@@ -2,6 +2,7 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -201,32 +202,52 @@ private fun Medium1Screen(uiState: UiState) {
                     }
                 }
             }
-            Box(
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(start = 70.dp)
+//                    .background(Color.Blue)
+//                    .border(
+//                        width = 2.dp,
+//                        color = Color(0xFFE7E0EC),
+//                        shape = RoundedCornerShape(size = 8.dp)
+//                    )
+//            )
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .width(221.dp)
-                    .padding(start = 70.dp)
-                    .background(Color.Blue)
-                    .border(
-                        width = 2.dp,
-                        color = Color(0xFFE7E0EC),
-                        shape = RoundedCornerShape(size = 8.dp)
+                    .padding(start = 8.dp)
+                    .padding(end = 32.dp)
+                    .padding(top = 16.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(221.dp)
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFE7E0EC),
+                            shape = RoundedCornerShape(size = 8.dp)
+                        )
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img_medium_1_activity_1),
+                        contentDescription = "",
                     )
-            )
+                }
+            }
         }
         Box(
             modifier = Modifier
+                .height(80.dp)
                 .fillMaxWidth()
                 .background(Color(0xFFFFD8E4))
-                .fillMaxWidth()
-                .height(80.dp)
         ) {
             Row {
                 Column {
                     Box(
                         modifier = Modifier
                             .padding(top = 12.dp)
-                            .padding(start = 39.17.dp)
+                            .padding(start = 31.17.dp)
                             .width(64.dp)
                             .height(32.dp)
                             .background(Color(0xFFEFB8C8), shape = RoundedCornerShape(16.dp))
@@ -238,9 +259,13 @@ private fun Medium1Screen(uiState: UiState) {
                             modifier = Modifier.align(Alignment.Center)
                         )
                     }
-                    Text(text = "Explore",
+                    Text(
+                        text = "Explore",
                         style = TextStyle(textAlign = TextAlign.Center),
-                        modifier =Modifier.width(126.33.dp).padding(start = 8.dp))
+                        modifier = Modifier
+                            .width(126.33.dp)
+                            .padding(start = 8.dp)
+                    )
                 }
             }
         }
