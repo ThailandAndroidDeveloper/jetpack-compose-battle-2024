@@ -45,7 +45,11 @@ private fun Easy2Screen(uiState: UiState) {
         TopAppBar(
             title = {},
             navigationIcon = {
-                Icon(painter = painterResource(id = uiState.menuIcon), contentDescription = null)
+                Icon(
+                    painter = painterResource(id = uiState.menuIcon),
+                    contentDescription = null,
+                    tint = Color.Unspecified
+                )
             },
             colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.tertiaryContainer
