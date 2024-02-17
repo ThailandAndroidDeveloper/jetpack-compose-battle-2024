@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
@@ -121,6 +122,7 @@ private fun Medium1Screen(uiState: UiState) {
                     )
                     Row(
                         modifier = Modifier
+                            .padding(top = 1.dp)
                             .background(
                                 color = SurfaceContainerLowest,
                                 shape = RoundedCornerShape(8.dp)
@@ -215,6 +217,7 @@ private fun Medium1Screen(uiState: UiState) {
                             )
                         ) {
                             Image(
+                                modifier = Modifier.height(82.dp),
                                 painter = painterResource(id = activity.preview),
                                 contentDescription = "Activity preview"
                             )
