@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -94,6 +97,18 @@ private fun Easy2Screen(uiState: UiState) {
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.tertiary
                     )
+                }
+            }
+            item {
+                LazyRow(modifier = Modifier.padding(16.dp)) {
+                    items(uiState.tags) { tag ->
+                        Text(
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.tertiary, RoundedCornerShape(16.dp))
+                                .padding(horizontal = 22.5.dp, vertical = 10.dp),
+                            text = tag
+                        )
+                    }
                 }
             }
         }
