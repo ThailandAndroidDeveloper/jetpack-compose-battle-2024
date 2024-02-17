@@ -62,6 +62,7 @@ private fun Easy2Screen(uiState: UiState) {
                     .background(color = MaterialTheme.colorScheme.tertiaryContainer),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Spacer(modifier = Modifier.height(8.dp))
                 Icon(
                     painter = painterResource(id = uiState.profileImage),
                     contentDescription = "",
@@ -75,6 +76,7 @@ private fun Easy2Screen(uiState: UiState) {
                     text = uiState.displayName,
                     style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.tertiary)
                 )
+                Spacer(modifier = Modifier.height(16.dp))
             }
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
                 LazyRow {
@@ -83,9 +85,12 @@ private fun Easy2Screen(uiState: UiState) {
                     }
                 }
             }
-            LazyColumn {
-                items(uiState.posts) {
-                    CardDetail(it)
+            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 5.dp)) {
+                LazyColumn {
+                    items(uiState.posts) {
+                        CardDetail(it)
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
                 }
             }
         }
@@ -98,6 +103,8 @@ private fun CardDetail(post: Post) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
+            .border(2.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(8.dp))
+            .padding(16.dp)
     ) {
         Row {
             Text(
@@ -114,6 +121,7 @@ private fun CardDetail(post: Post) {
                 style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onTertiary)
             )
         }
+        Text(text = post.content)
     }
 }
 
