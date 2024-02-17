@@ -40,7 +40,9 @@ private fun Easy2Screen(uiState: UiState) {
     // TODO
     Column(
         modifier = Modifier
-
+            .background(
+                color =  MaterialTheme.colorScheme.onTertiary
+            )
     ) {
         TopAppBar(
             title = {},
