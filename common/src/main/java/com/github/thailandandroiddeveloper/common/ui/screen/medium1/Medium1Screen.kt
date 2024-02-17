@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -152,7 +153,7 @@ private fun Medium1Screen(uiState: UiState) {
                     items(uiState.activities) { act ->
                         Card(
                             colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                                containerColor = MaterialTheme.colorScheme.onTertiary
                             ),
                             modifier = Modifier
                                 .width(303.dp)
@@ -182,8 +183,11 @@ private fun Medium1Screen(uiState: UiState) {
                                         )
                                         Spacer(modifier = Modifier.height(1.dp))
                                         Text(
+                                            textAlign = TextAlign.Start,
+                                            maxLines = 2,
+                                            overflow = TextOverflow.Ellipsis,
                                             text = act.content,
-                                            style = MaterialTheme.typography.bodyLarge
+                                            style = MaterialTheme.typography.bodyLarge,
                                         )
                                     }
                                     Box(
@@ -192,11 +196,24 @@ private fun Medium1Screen(uiState: UiState) {
                                         Row(
                                             modifier = Modifier.align(Alignment.TopEnd)
                                         ) {
-                                            Button(onClick = { /*TODO*/ }) {
+                                            Button(
+                                                onClick = { /*TODO*/ },
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = MaterialTheme.colorScheme.onTertiary,
+                                                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+                                                ),
+                                            ) {
                                                 Text(text = act.detail)
+
                                             }
                                             Spacer(modifier = Modifier.width(8.dp))
-                                            Button(onClick = { /*TODO*/ }) {
+                                            Button(
+                                                modifier = Modifier.clip(RoundedCornerShape(8.dp)),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                                                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+                                                ),
+                                                onClick = { /*TODO*/ }) {
                                                 Text(text = act.action)
                                             }
                                         }
