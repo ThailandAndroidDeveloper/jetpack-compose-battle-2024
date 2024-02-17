@@ -244,9 +244,12 @@ private fun Medium1Screen(uiState: UiState) {
                             style = TextStyle(letterSpacing = 0.5.sp, fontSize = 16.sp),
                             modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                         )
-                        Row {
-
-                        }
+//                        Row {
+//                            Text(
+//                                text = "Detail",
+//                                style = Text
+//                            )
+//                        }
                     }
                 }
             }
