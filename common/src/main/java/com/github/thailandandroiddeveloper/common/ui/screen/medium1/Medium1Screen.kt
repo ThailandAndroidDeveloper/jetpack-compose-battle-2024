@@ -16,6 +16,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +33,8 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.SurfaceContainerLowest
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryFixed
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryFixedDim
 import com.github.thailandandroiddeveloper.common.ui.theme.Typography
 
 @Composable
@@ -37,8 +42,29 @@ private fun Medium1Screen(uiState: UiState) {
     // TODO
     Scaffold(
         bottomBar = {
-            BottomAppBar {
-
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                contentColor = MaterialTheme.colorScheme.onBackground,
+                tonalElevation = 0.dp
+            ) {
+                uiState.menus.forEach { menu ->
+                    NavigationBarItem(
+                        selected = menu.selected,
+                        onClick = { /*TODO*/ },
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = menu.icon),
+                                contentDescription = "Menu icon"
+                            )
+                        },
+                        label = {
+                            Text(text = menu.text)
+                        },
+                        colors = NavigationBarItemDefaults.colors(
+                            indicatorColor = TertiaryFixedDim
+                        )
+                    )
+                }
             }
         }
     ) { paddingValues ->
