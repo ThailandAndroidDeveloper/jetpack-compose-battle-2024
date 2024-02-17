@@ -149,7 +149,8 @@ private fun Easy2Screen(uiState: UiState) {
                                         vertical = 2.dp
                                     ),
                                 text = post.tag,
-                                color = MaterialTheme.colorScheme.onTertiary
+                                color = MaterialTheme.colorScheme.onTertiary,
+                                style = MaterialTheme.typography.labelSmall
                             )
                         }
                         Text(
@@ -183,7 +184,8 @@ fun Tag(tag: String) {
                 vertical = 10.dp
             ),
         text = tag,
-        color = MaterialTheme.colorScheme.onTertiary
+        color = MaterialTheme.colorScheme.onTertiary,
+        style = MaterialTheme.typography.labelLarge,
     )
 }
 
