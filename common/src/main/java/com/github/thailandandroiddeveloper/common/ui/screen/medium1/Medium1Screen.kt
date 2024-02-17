@@ -229,10 +229,13 @@ private fun Medium1Screen(uiState: UiState) {
                             shape = RoundedCornerShape(size = 8.dp)
                         )
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_medium_1_activity_1),
-                        contentDescription = "",
-                    )
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_medium_1_activity_1),
+                            contentDescription = "",
+                        )
+                        Text(text = "Praesent faucibus", modifier = Modifier.padding(start = 16.dp,top = 8.dp))
+                    }
                 }
             }
         }
