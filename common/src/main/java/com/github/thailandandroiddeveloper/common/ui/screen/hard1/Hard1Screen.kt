@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -57,31 +60,58 @@ private fun Hard1Screen(uiState: UiState) {
         ) {
             if (configuration.screenWidthDp > 500) {
                 BottomLeftMenu(uiState)
+            } else {
+                Box(modifier = Modifier.height(411.dp))
             }
+            val start = if (configuration.screenWidthDp > 500)
+                236.dp
+            else
+                16.dp
+            val end = if (configuration.screenWidthDp > 500) 128.dp
+            else 16.dp
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 17.dp)
-                    .padding(start = 236.dp, end = 128.dp),
+                    .padding(start = start, end = end),
                 verticalArrangement = Arrangement.Center,
             ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    content = {
-                        items(
-                            items = uiState.cards,
-                            itemContent = {
-                                when (it) {
-                                    is Card.Post -> CardPost(it)
-                                    is Card.Reward -> CardReward(card = it)
-                                    is Card.Suggestion -> CardSuggestion(card = it)
+                if (configuration.screenWidthDp <= 500) {
+                    Box(modifier = Modifier.height(148.dp))
+                }
+                if (configuration.screenWidthDp > 500)
+                    LazyVerticalGrid(
+                        modifier = Modifier.fillMaxWidth(),
+                        columns = GridCells.Fixed(2),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        content = {
+                            items(
+                                items = uiState.cards,
+                                itemContent = {
+                                    when (it) {
+                                        is Card.Post -> CardPost(it)
+                                        is Card.Reward -> CardReward(card = it)
+                                        is Card.Suggestion -> CardSuggestion(card = it)
+                                    }
+                                },
+                            )
+                        }
+                    )
+                else
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        content = {
+                            uiState.cards.forEachIndexed { index, card ->
+                                when (card) {
+                                    is Card.Post -> CardPost(card)
+                                    is Card.Reward -> CardReward(card = card)
+                                    is Card.Suggestion -> CardSuggestion(card = card)
                                 }
-                            },
-                        )
-                    }
-                )
+                            }
+                        }
+                    )
             }
         }
     }
@@ -89,11 +119,18 @@ private fun Hard1Screen(uiState: UiState) {
 
 @Composable
 private fun CardSuggestion(card: Card.Suggestion) {
-    Column(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp))
     ) {
         Text(
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
             text = card.text,
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -101,20 +138,18 @@ private fun CardSuggestion(card: Card.Suggestion) {
             overflow = TextOverflow.Ellipsis
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.wrapContentHeight(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Button(onClick = { /*TODO*/ }) {
-                Text(
-                    text = card.moreButton,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-                Icon(
-                    painter = painterResource(id = card.moreIcon),
-                    contentDescription = null
-                )
-            }
+            Text(
+                text = card.moreButton,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+            Icon(
+                painter = painterResource(id = card.moreIcon),
+                contentDescription = null
+            )
         }
     }
 }
@@ -123,7 +158,8 @@ private fun CardSuggestion(card: Card.Suggestion) {
 private fun CardReward(card: Card.Reward) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .height(50.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -142,6 +178,7 @@ private fun CardReward(card: Card.Reward) {
 
 @Composable
 private fun CardPost(card: Card.Post) {
+    val configuration = LocalConfiguration.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -155,18 +192,21 @@ private fun CardPost(card: Card.Post) {
         Row(
             modifier = Modifier,
         ) {
+            val height = if (configuration.screenWidthDp > 500) 224.dp else 108.dp
+            val width = if (configuration.screenWidthDp > 500) 180.dp else 120.dp
             Image(
                 modifier = Modifier
-                    .width(180.dp)
-                    .height(224.dp),
+                    .width(width)
+                    .height(height),
                 painter = painterResource(id = card.photo),
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds
             )
+            val maxLines = if (configuration.screenWidthDp > 500) 8 else 3
             Text(
                 modifier = Modifier.padding(16.dp),
                 text = card.text,
-                maxLines = 8,
+                maxLines = maxLines,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
