@@ -2,18 +2,26 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -33,7 +41,6 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.SurfaceContainerLowest
-import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryFixed
 import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryFixedDim
 import com.github.thailandandroiddeveloper.common.ui.theme.Typography
 
@@ -135,6 +142,103 @@ private fun Medium1Screen(uiState: UiState) {
                                 tint = MaterialTheme.colorScheme.onTertiary
                             )
                         }
+                    }
+                }
+
+            }
+            item(key = 1) {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+            items(items = uiState.activities) { activity ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 32.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(
+                            modifier = Modifier
+                                .size(36.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.onTertiary,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .border(
+                                    width = 2.dp,
+                                    color = MaterialTheme.colorScheme.surfaceVariant,
+                                    shape = RoundedCornerShape(8.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                modifier = Modifier.padding(4.dp),
+                                painter = painterResource(id = activity.icon),
+                                contentDescription = "Search",
+                                tint = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
+                        repeat(23) {
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Box(modifier = Modifier
+                                .size(4.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.surfaceVariant,
+                                    shape = CircleShape
+                                )
+                            )
+                        }
+                    }
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            modifier = Modifier
+
+                                .height(211.dp),
+                            border = BorderStroke(
+                                width = 2.dp,
+                                color = MaterialTheme.colorScheme.surfaceVariant
+                            ),
+                            shape = RoundedCornerShape(8.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.onTertiary
+                            )
+                        ) {
+                            Image(
+                                painter = painterResource(id = activity.preview),
+                                contentDescription = "Activity preview"
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        start = 16.dp,
+                                        top = 8.dp,
+                                        end = 8.dp,
+                                        bottom = 16.dp
+                                    )
+                            ) {
+                                Text(
+                                    text = activity.title,
+                                    style = Typography.titleMedium,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                                Spacer(modifier = Modifier.height(1.dp))
+                                Text(
+                                    text = activity.content,
+                                    style = Typography.bodyLarge,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                                if (activity.progress != null) {
+
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }
