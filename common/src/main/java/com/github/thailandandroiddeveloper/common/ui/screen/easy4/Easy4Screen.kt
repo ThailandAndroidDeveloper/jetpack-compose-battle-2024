@@ -2,21 +2,27 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy4
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -29,7 +35,7 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Easy4Screen(uiState: UiState) {
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.onPrimary
+        containerColor = MaterialTheme.colorScheme.primaryContainer
     ) { innerPadding ->
         Row(
             modifier = Modifier
@@ -44,6 +50,47 @@ private fun Easy4Screen(uiState: UiState) {
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds
             )
+            Spacer(
+                modifier = Modifier
+                    .width(8.dp)
+                    .fillMaxHeight()
+                    .background(MaterialTheme.colorScheme.outline)
+            )
+            Column(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .fillMaxSize()
+                    .background(Color.White, shape = RoundedCornerShape(16.dp))
+                    .padding(24.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White, shape = RoundedCornerShape(16.dp)),
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .height(200.dp)
+                            .clip(
+                                shape = RoundedCornerShape(16.dp)
+                            ),
+                        painter = painterResource(id = uiState.from.image),
+                        contentDescription = null,
+                        contentScale = ContentScale.FillBounds
+                    )
+                    Image(
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .height(200.dp)
+                            .clip(
+                                shape = RoundedCornerShape(16.dp)
+                            ),
+                        painter = painterResource(id = uiState.to.image),
+                        contentDescription = null,
+                        contentScale = ContentScale.FillBounds
+                    )
+                }
+            }
         }
     }
 }
