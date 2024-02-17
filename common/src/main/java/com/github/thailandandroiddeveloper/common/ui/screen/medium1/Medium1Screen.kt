@@ -2,18 +2,26 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -73,70 +82,113 @@ private fun Medium1Screen(uiState: UiState) {
                     )
                 }
             }
-
         }
     ) { paddingValues ->
         Box(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            Box(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.tertiaryContainer)
-
-
-            ) {
-                Column(
+            Column {
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(232.dp)
-                        .padding(horizontal = 32.dp)
-                    ,
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .background(MaterialTheme.colorScheme.tertiaryContainer)
                 ) {
-                    Text(
-                        modifier = Modifier.padding(top = 34.dp
-                    ),
-                    text = uiState.title,
-                    style = MaterialTheme.typography.headlineMedium,
-                    )
-                    Text(
-                        text = uiState.subtitle,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis,
-                        maxLines = 3,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                    Box(
-                        Modifier
-                            .height(40.dp)
-                            .width(214.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(MaterialTheme.colorScheme.onTertiary),
-                        contentAlignment = Alignment.CenterStart
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(232.dp)
+                            .padding(horizontal = 32.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            modifier = Modifier.padding(start = 10.dp),
-                            text = uiState.searchHint,
-                            style = MaterialTheme.typography.bodyMedium
+                            modifier = Modifier.padding(
+                                top = 34.dp
+                            ),
+                            text = uiState.title,
+                            style = MaterialTheme.typography.headlineMedium,
                         )
-                        Icon(
-                            modifier = Modifier
-                                .size(32.dp)
+                        Text(
+                            text = uiState.subtitle,
+                            textAlign = TextAlign.Center,
+                            overflow = TextOverflow.Ellipsis,
+                            maxLines = 3,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.tertiary
+                        )
+                        Box(
+                            Modifier
+                                .height(40.dp)
+                                .width(214.dp)
                                 .clip(RoundedCornerShape(8.dp))
-                                .background(MaterialTheme.colorScheme.tertiary)
-                                .padding(4.dp)
-                                .align(Alignment.CenterEnd),
-                            painter = painterResource(id = uiState.searchIcon),
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onTertiary
-                        )
+                                .background(MaterialTheme.colorScheme.onTertiary),
+                            contentAlignment = Alignment.CenterStart
+                        ) {
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = uiState.searchHint,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .background(MaterialTheme.colorScheme.tertiary)
+                                    .padding(4.dp)
+                                    .align(Alignment.CenterEnd),
+                                painter = painterResource(id = uiState.searchIcon),
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onTertiary
+                            )
+                        }
+                    }
+                }
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    modifier = Modifier.padding(start = 76.dp, top = 16.dp)) {
+                    items(uiState.activities) { act ->
+                        Card(
+                            Modifier
+                                .width(303.dp)
+                                .background(MaterialTheme.colorScheme.surfaceVariant)
+                        ) {
+                            Column {
+                                Image(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(82.dp),
+                                    painter = painterResource(id = act.preview),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop
+                                )
+                                Column(
+                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                ) {
+                                    Box {
+                                        Column {
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Text(
+                                                text = act.title,
+                                            )
+                                            Spacer(modifier = Modifier.height(1.dp))
+                                            Text(text = act.content)
+                                        }
+                                        Row(
+                                            modifier = Modifier
+                                                .align(Alignment.BottomEnd)
+                                        ) {
+                                            Button(onClick = { /*TODO*/ }) {
+                                                Text(text = "Te")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-
         }
 
     }
