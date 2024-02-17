@@ -66,21 +66,23 @@ private fun Hard1Screen(uiState: UiState) {
             else 16.dp
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 17.dp)
-                    .padding(start = start, end = end),
+                    .fillMaxWidth(),
                 verticalArrangement = Arrangement.Center,
             ) {
                 if (configuration.screenWidthDp <= 500) {
                     Box(
                         modifier = Modifier
-                            .height(148.dp)
                             .background(Color.White)
+                            .height(148.dp)
+                            .fillMaxWidth()
                     )
                 }
+                Spacer(modifier = Modifier.height(8.dp))
                 if (configuration.screenWidthDp > 500)
                     LazyVerticalGrid(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = start, end = end),
                         columns = GridCells.Fixed(2),
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -99,7 +101,9 @@ private fun Hard1Screen(uiState: UiState) {
                     )
                 else
                     Column(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = start, end = end),
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                         content = {
                             uiState.cards.forEachIndexed { index, card ->
@@ -176,18 +180,28 @@ private fun CardReward(card: Card.Reward) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(50.dp),
+            .height(50.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp))
+            .padding(9.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
+            modifier = Modifier.background(
+                MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(4.dp)
+            ),
             painter = painterResource(id = card.icon),
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer
+            tint = Color.White
         )
         Spacer(modifier = Modifier.Companion.width(8.dp))
         Text(
             text = card.text,
-            style = MaterialTheme.typography.bodySmall,
+            style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onPrimaryContainer
         )
     }
