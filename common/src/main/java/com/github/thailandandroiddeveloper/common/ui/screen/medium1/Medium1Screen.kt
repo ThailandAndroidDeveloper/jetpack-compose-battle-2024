@@ -22,6 +22,7 @@ import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -146,14 +147,18 @@ private fun Medium1Screen(uiState: UiState) {
                 }
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.padding(start = 76.dp, top = 16.dp)) {
+                    modifier = Modifier.padding(start = 76.dp, top = 16.dp)
+                ) {
                     items(uiState.activities) { act ->
                         Card(
-                            Modifier
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            ),
+                            modifier = Modifier
                                 .width(303.dp)
-                                .background(MaterialTheme.colorScheme.surfaceVariant)
                         ) {
-                            Column {
+                            Column(
+                            ) {
                                 Image(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -163,23 +168,36 @@ private fun Medium1Screen(uiState: UiState) {
                                     contentScale = ContentScale.Crop
                                 )
                                 Column(
-                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                    modifier = Modifier.padding(
+                                        start = 16.dp,
+                                        end = 16.dp,
+                                        bottom = 16.dp
+                                    )
                                 ) {
-                                    Box {
-                                        Column {
-                                            Spacer(modifier = Modifier.height(8.dp))
-                                            Text(
-                                                text = act.title,
-                                            )
-                                            Spacer(modifier = Modifier.height(1.dp))
-                                            Text(text = act.content)
-                                        }
+                                    Column {
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = act.title,
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                        Spacer(modifier = Modifier.height(1.dp))
+                                        Text(
+                                            text = act.content,
+                                            style = MaterialTheme.typography.bodyLarge
+                                        )
+                                    }
+                                    Box(
+                                        Modifier.fillMaxWidth()
+                                    ) {
                                         Row(
-                                            modifier = Modifier
-                                                .align(Alignment.BottomEnd)
+                                            modifier = Modifier.align(Alignment.TopEnd)
                                         ) {
                                             Button(onClick = { /*TODO*/ }) {
-                                                Text(text = "Te")
+                                                Text(text = act.detail)
+                                            }
+                                            Spacer(modifier = Modifier.width(8.dp))
+                                            Button(onClick = { /*TODO*/ }) {
+                                                Text(text = act.action)
                                             }
                                         }
                                     }
