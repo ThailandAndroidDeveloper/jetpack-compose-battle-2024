@@ -3,12 +3,24 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy4
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.PixelTablet
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
@@ -16,8 +28,16 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Easy4Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 4")
+    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primaryContainer),
+        horizontalAlignment = Alignment.Start) {
+        Image(painter = painterResource(id = uiState.map),
+            contentDescription = "image description",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.fillMaxHeight().width(668.dp) )
+
+        Box(Modifier.fillMaxHeight().width(12.dp).background(MaterialTheme.colorScheme.outline))
+
+        Box(Modifier.fillMaxHeight().weight(1f).background(MaterialTheme.colorScheme.onPrimary))
     }
 }
 
