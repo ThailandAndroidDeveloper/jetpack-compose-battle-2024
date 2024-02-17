@@ -94,6 +94,7 @@ private fun PostItem(activity: Activity) {
         verticalArrangement = Arrangement.Center,
     ) {
         Image(
+            modifier = Modifier.height(82.dp),
             painter = painterResource(id = activity.preview),
             contentDescription = null,
             contentScale = ContentScale.FillBounds
@@ -117,10 +118,24 @@ private fun PostItem(activity: Activity) {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .height(53.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
         ) {
-
+            Text(
+                text = activity.detail,
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.tertiary
+            )
+            Text(
+                modifier = Modifier.background(MaterialTheme.colorScheme.tertiary),
+                text = activity.action,
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onTertiaryContainer
+            )
         }
     }
 }
