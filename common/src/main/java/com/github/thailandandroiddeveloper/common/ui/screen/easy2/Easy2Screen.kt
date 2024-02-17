@@ -1,24 +1,144 @@
 package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Easy2Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 2")
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { /*TODO*/ },
+                navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            painter = painterResource(id = uiState.menuIcon),
+                            contentDescription = ""
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+            )
+        }
+    ) { paddingValues ->
+        Column(modifier = Modifier.padding(paddingValues)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.tertiaryContainer),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Icon(
+                    painter = painterResource(id = uiState.profileImage),
+                    contentDescription = "",
+                    tint = Color.Unspecified,
+                    modifier = Modifier
+                        .border(4.dp, MaterialTheme.colorScheme.tertiary, CircleShape)
+                        .clip(CircleShape)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = uiState.displayName,
+                    style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.tertiary)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+            Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
+                LazyRow {
+                    items(uiState.tags) {
+                        SuggestChip(tag = it)
+                    }
+                }
+            }
+            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 5.dp)) {
+                LazyColumn {
+                    items(uiState.posts) {
+                        CardDetail(it)
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }
+            }
+        }
     }
+}
+
+@Composable
+private fun CardDetail(post: Post) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .border(2.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(8.dp))
+            .padding(16.dp)
+    ) {
+        Row {
+            Text(
+                text = post.title,
+                modifier = Modifier.weight(1f),
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = post.tag,
+                Modifier
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(color = MaterialTheme.colorScheme.tertiary)
+                    .padding(vertical = 4.dp, horizontal = 8.dp),
+                style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onTertiary)
+            )
+        }
+        Text(text = post.content)
+    }
+}
+
+@Composable
+fun SuggestChip(tag: String) {
+    Button(
+        onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.tertiary
+        )
+    ) {
+        Text(text = tag)
+    }
+    Spacer(modifier = Modifier.width(8.dp))
 }
 
 @Preview(group = Pixel7.name, device = Pixel7.spec, showBackground = true)
