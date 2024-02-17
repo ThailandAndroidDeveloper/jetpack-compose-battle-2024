@@ -2,20 +2,22 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -25,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
@@ -86,32 +89,102 @@ private fun Easy2Screen(uiState: UiState) {
         }
 
         LazyRow(
-            modifier = Modifier
-                .padding(
-                    top= 16.dp,
-                )
-                .padding(
-                    horizontal = 16.dp
-                )
+            modifier = Modifier,
+            contentPadding = PaddingValues(
+                top = 16.dp,
+                start = 16.dp,
+                end = 16.dp
+            )
         ) {
             items(uiState.tags) { tag ->
-                Text(
-                    modifier = Modifier
-                        .background(
-                            MaterialTheme.colorScheme.tertiary,
-                            RoundedCornerShape(
-                                100.dp
-                            )
-                        )
-                        .padding(
-                            horizontal = 22.5.dp,
-                            vertical = 10.dp
-                        ),
-                    text = tag
+                Tag(tag = tag)
+                Spacer(
+                    modifier = Modifier.padding(
+                        start = 8.dp
+                    )
                 )
             }
         }
+
+        LazyColumn {
+            items(uiState.posts) { post ->
+                Card(
+                    modifier = Modifier
+                        .padding(
+                            top = 13.dp
+                        )
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 8.dp
+                        ),
+                    border = BorderStroke(
+                        1.dp,
+                        MaterialTheme.colorScheme.outlineVariant
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(16.dp),
+                    ) {
+                        Row {
+                            Text(
+                                modifier = Modifier
+                                    .weight(1f, fill = true),
+                                text = post.title,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                modifier = Modifier
+                                    .background(
+                                        MaterialTheme.colorScheme.tertiary,
+                                        RoundedCornerShape(
+                                            100.dp
+                                        )
+                                    )
+                                    .padding(
+                                        horizontal = 8.dp,
+                                        vertical = 2.dp
+                                    ),
+                                text = post.tag,
+                                color = MaterialTheme.colorScheme.onTertiary
+                            )
+                        }
+                        Text(
+                            modifier = Modifier
+                                .padding(
+                                    top = 4.dp
+                                ),
+                            text = post.content,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.tertiary,
+                        )
+                    }
+                }
+            }
+        }
     }
+}
+
+@Composable
+fun Tag(tag: String) {
+    Text(
+        modifier = Modifier
+            .background(
+                MaterialTheme.colorScheme.tertiary,
+                RoundedCornerShape(
+                    100.dp
+                )
+            )
+            .padding(
+                horizontal = 22.5.dp,
+                vertical = 10.dp
+            ),
+        text = tag,
+        color = MaterialTheme.colorScheme.onTertiary
+    )
 }
 
 @Preview(group = Pixel7.name, device = Pixel7.spec, showBackground = true)
