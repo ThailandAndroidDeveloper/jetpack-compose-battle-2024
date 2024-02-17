@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -233,8 +234,19 @@ private fun Medium1Screen(uiState: UiState) {
                         Image(
                             painter = painterResource(id = R.drawable.img_medium_1_activity_1),
                             contentDescription = "",
+                            modifier = Modifier.clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
                         )
-                        Text(text = "Praesent faucibus", modifier = Modifier.padding(start = 16.dp,top = 8.dp))
+                        Text(text = "Praesent faucibus",
+                            style = TextStyle(fontSize = 16.sp,letterSpacing = 0.15.sp,),
+                            modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+                        )
+                        Text(text = "Morbi feugiat posuere felis, luctus fringilla mauris semper vel.",
+                            style = TextStyle(letterSpacing = 0.5.sp, fontSize = 16.sp),
+                            modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+                        )
+                        Row {
+
+                        }
                     }
                 }
             }
