@@ -59,14 +59,15 @@ private fun Easy1Screen(uiState: UiState) {
                     .width(116.dp)
                     .padding(top = 96.dp)
                     .verticalScroll(ScrollState(0))
+
             ) {
-                repeat(6) {
+                (6 downTo 0).forEach {
                     Image(
                         modifier = Modifier
                             .padding(bottom = 16.dp)
                             .height(120.dp)
                             .clip(RoundedCornerShape(8.dp)),
-                        painter = painterResource(id = uiState.items[(it+2)%4].resource),
+                        painter = painterResource(id = uiState.items[(it)%4].resource),
                         contentDescription = null
                     )
                 }
@@ -78,12 +79,12 @@ private fun Easy1Screen(uiState: UiState) {
                     .padding(top = 56.dp)
                     .verticalScroll(ScrollState(0))
             ) {
-                repeat(6) {
+                (6 downTo 0).forEach {
                     Image(
                         modifier = Modifier
                             .padding(bottom = 16.dp)
                             .clip(RoundedCornerShape(8.dp)),
-                        painter = painterResource(id = uiState.items[(it+1)%4].resource),
+                        painter = painterResource(id = uiState.items[(it+3)%4].resource),
                         contentDescription = null
                     )
                 }
@@ -95,12 +96,12 @@ private fun Easy1Screen(uiState: UiState) {
                     .padding(top = 16.dp)
                     .verticalScroll(ScrollState(0))
             ) {
-                repeat(6) {
+                (6 downTo 0).forEach {
                     Image(
                         modifier = Modifier
                             .padding(bottom = 16.dp)
                             .clip(RoundedCornerShape(8.dp)),
-                        painter = painterResource(id = uiState.items[(it)%4].resource),
+                        painter = painterResource(id = uiState.items[(it+2)%4].resource),
                         contentDescription = null
                     )
                 }
