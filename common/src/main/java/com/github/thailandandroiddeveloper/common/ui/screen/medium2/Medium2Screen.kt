@@ -3,12 +3,18 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium2
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.PixelTablet
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
@@ -16,8 +22,29 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Medium2Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 2")
+    Row(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.Green)) {
+        Column (modifier = Modifier
+            .fillMaxHeight()
+            .width(300.dp)
+            .background(MaterialTheme.colorScheme.onPrimary)) {
+
+        }
+
+        Column (modifier = Modifier
+            .fillMaxHeight()
+            .weight(1f)
+            .background(MaterialTheme.colorScheme.primaryContainer)) {
+
+        }
+
+        Column (modifier = Modifier
+            .fillMaxHeight()
+            .width(320.dp)
+            .background(MaterialTheme.colorScheme.onPrimary)) {
+
+        }
     }
 }
 

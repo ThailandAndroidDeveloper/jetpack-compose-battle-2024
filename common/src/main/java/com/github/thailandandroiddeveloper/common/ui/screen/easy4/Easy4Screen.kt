@@ -2,10 +2,14 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy4
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,16 +32,56 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 @Composable
 private fun Easy4Screen(uiState: UiState) {
     // TODO
-    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primaryContainer),
-        horizontalAlignment = Alignment.Start) {
+    Row(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.primaryContainer),
+        ) {
         Image(painter = painterResource(id = uiState.map),
             contentDescription = "image description",
             contentScale = ContentScale.Fit,
-            modifier = Modifier.fillMaxHeight().width(668.dp) )
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(668.dp) )
 
-        Box(Modifier.fillMaxHeight().width(12.dp).background(MaterialTheme.colorScheme.outline))
+        Box(
+            Modifier
+                .fillMaxHeight()
+                .width(12.dp)
+                .background(MaterialTheme.colorScheme.outline))
 
-        Box(Modifier.fillMaxHeight().weight(1f).background(MaterialTheme.colorScheme.onPrimary))
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .weight(1f)
+                .padding(24.dp)
+                .background(MaterialTheme.colorScheme.onPrimary, RoundedCornerShape(16.dp))
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(28.dp)) {
+
+            Box(modifier = Modifier.clip(RoundedCornerShape(8.dp)).border(2.dp,MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
+                Image(painter = painterResource(id = uiState.from.image),
+                    contentDescription = "image description",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp) )
+
+                Row(modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.90f))
+                    .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 40.dp)) {
+
+                    Text(text = uiState.from.address,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimary)
+
+                }
+
+            }
+
+        }
     }
 }
 
