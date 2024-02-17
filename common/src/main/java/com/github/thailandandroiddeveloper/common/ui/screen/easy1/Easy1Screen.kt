@@ -21,7 +21,7 @@ private fun Easy1Screen(uiState: UiState) {
     // TODO
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.Green)) {
+        .background(Color.White)) {
         Text(text = "Easy 1")
     }
     Column {
