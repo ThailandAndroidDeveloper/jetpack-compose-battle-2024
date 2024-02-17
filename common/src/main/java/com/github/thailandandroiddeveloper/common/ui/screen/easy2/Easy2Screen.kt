@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -77,7 +79,8 @@ private fun Easy2Screen(uiState: UiState) {
                         ),
                         CircleShape
                     )
-                    .clip(CircleShape),
+                    .clip(CircleShape)
+                    .size(151.dp),
                 painter = painterResource(id = uiState.profileImage),
                 contentDescription = null
             )
@@ -86,7 +89,7 @@ private fun Easy2Screen(uiState: UiState) {
                 modifier = Modifier
                     .padding(
                         top = 8.dp,
-                        bottom = 16.dp
+                        bottom = 25.dp
                     ),
                 style = MaterialTheme.typography.titleLarge,
                 text = uiState.displayName,
@@ -117,15 +120,17 @@ private fun Easy2Screen(uiState: UiState) {
                 Card(
                     modifier = Modifier
                         .padding(
-                            top = 13.dp
+                            top = 21.dp
                         )
                         .padding(
                             horizontal = 16.dp,
-                            vertical = 8.dp
                         ),
                     border = BorderStroke(
                         1.dp,
                         MaterialTheme.colorScheme.outlineVariant
+                    ),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.onTertiary
                     )
                 ) {
                     Column(
