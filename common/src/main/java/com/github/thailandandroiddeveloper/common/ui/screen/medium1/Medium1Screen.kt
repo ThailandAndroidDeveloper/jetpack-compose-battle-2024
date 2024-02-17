@@ -221,7 +221,23 @@ private fun Medium1Screen(uiState: UiState) {
                 .fillMaxWidth()
                 .height(80.dp)
         ) {
-
+            Row {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 12.dp)
+                        .padding(start = 39.17.dp)
+                        .width(64.dp)
+                        .height(32.dp)
+                        .background(Color(0xFFEFB8C8), shape = RoundedCornerShape(16.dp))
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_medium_1_explore),
+                        contentDescription = "",
+                        tint = Color(0xFF1D1B20),
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
         }
     }
 }
