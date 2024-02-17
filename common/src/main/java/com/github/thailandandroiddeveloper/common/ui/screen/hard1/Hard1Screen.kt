@@ -2,13 +2,45 @@ package com.github.thailandandroiddeveloper.common.ui.screen.hard1
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.pager.PageSize
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.preview.PixelTablet
@@ -16,9 +48,249 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
 @Composable
 private fun Hard1Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Hard 1")
+    val configuration = LocalConfiguration.current
+    configuration.screenWidthDp
+    Scaffold(
+        containerColor = Color(0xff6750A4)
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            val start = if (configuration.screenWidthDp > 500)
+                236.dp
+            else
+                16.dp
+            val end = if (configuration.screenWidthDp > 500) 128.dp
+            else 16.dp
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+            ) {
+                if (configuration.screenWidthDp <= 500) {
+                    Box(
+                        modifier = Modifier
+                            .background(Color.White)
+                            .height(148.dp)
+                            .fillMaxWidth()
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                if (configuration.screenWidthDp > 500)
+                    LazyVerticalGrid(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = start, end = end),
+                        columns = GridCells.Fixed(2),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        content = {
+                            items(
+                                items = uiState.cards,
+                                itemContent = {
+                                    when (it) {
+                                        is Card.Post -> CardPost(it)
+                                        is Card.Reward -> CardReward(card = it)
+                                        is Card.Suggestion -> CardSuggestion(card = it)
+                                    }
+                                },
+                            )
+                        }
+                    )
+                else
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = start, end = end),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        content = {
+                            uiState.cards.forEachIndexed { index, card ->
+                                when (card) {
+                                    is Card.Post -> CardPost(card)
+                                    is Card.Reward -> CardReward(card = card)
+                                    is Card.Suggestion -> CardSuggestion(card = card)
+                                }
+                            }
+                        }
+                    )
+            }
+
+            if (configuration.screenWidthDp > 500) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .width(300.dp)
+                        .height(100.dp)
+                        .background(Color.White)
+                )
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .width(100.dp)
+                        .height(150.dp)
+                        .background(Color.White)
+                )
+                BottomLeftMenu(uiState)
+            }
+        }
+    }
+}
+
+@Composable
+private fun CardSuggestion(card: Card.Suggestion) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp))
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
+            text = card.text,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+        Row(
+            modifier = Modifier.wrapContentHeight(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = card.moreButton,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+            Icon(
+                painter = painterResource(id = card.moreIcon),
+                contentDescription = null
+            )
+        }
+    }
+}
+
+@Composable
+private fun CardReward(card: Card.Reward) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp))
+            .padding(9.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier.background(
+                MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(4.dp)
+            ),
+            painter = painterResource(id = card.icon),
+            contentDescription = null,
+            tint = Color.White
+        )
+        Spacer(modifier = Modifier.Companion.width(8.dp))
+        Text(
+            text = card.text,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onPrimaryContainer
+        )
+    }
+}
+
+@Composable
+private fun CardPost(card: Card.Post) {
+    val configuration = LocalConfiguration.current
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(8.dp)),
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Row(
+            modifier = Modifier,
+        ) {
+            val height = if (configuration.screenWidthDp > 500) 224.dp else 108.dp
+            val width = if (configuration.screenWidthDp > 500) 180.dp else 120.dp
+            Image(
+                modifier = Modifier
+                    .width(width)
+                    .height(height),
+                painter = painterResource(id = card.photo),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+            val maxLines = if (configuration.screenWidthDp > 500) 8 else 3
+            Text(
+                modifier = Modifier.padding(16.dp),
+                text = card.text,
+                maxLines = maxLines,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+    }
+}
+
+@Composable
+private fun BoxScope.BottomLeftMenu(uiState: UiState) {
+    Column(
+        modifier = Modifier.Companion
+            .align(Alignment.BottomStart)
+            .padding(start = 32.dp, bottom = 40.dp)
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(12.dp)
+            )
+            .width(156.dp)
+            .height(337.dp),
+        verticalArrangement = Arrangement.Center,
+    ) {
+        uiState.primaryMenus.forEachIndexed { index, primaryMenu ->
+            primaryMenu.menus.forEachIndexed { index, item ->
+                val color = if (item.selected)
+                    MaterialTheme.colorScheme.primaryContainer
+                else
+                    Color.White
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp)
+                        .padding(horizontal = 8.dp)
+                        .background(
+                            color = color,
+                            shape = RoundedCornerShape(8.dp)
+                        ),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(id = item.icon),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        text = item.text,
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+        }
     }
 }
 
