@@ -1,16 +1,19 @@
 package com.github.thailandandroiddeveloper.common.ui.screen.easy4
 
+import android.graphics.drawable.Icon
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -56,9 +59,12 @@ private fun Easy4Screen(uiState: UiState) {
                 .padding(24.dp)
                 .background(MaterialTheme.colorScheme.onPrimary, RoundedCornerShape(16.dp))
                 .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(28.dp)) {
 
-            Box(modifier = Modifier.clip(RoundedCornerShape(8.dp)).border(2.dp,MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
+            Box(modifier = Modifier
+                .clip(RoundedCornerShape(8.dp))
+                .border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
                 Image(painter = painterResource(id = uiState.from.image),
                     contentDescription = "image description",
                     contentScale = ContentScale.Fit,
@@ -81,19 +87,62 @@ private fun Easy4Screen(uiState: UiState) {
 
             }
 
-            Box(modifier = Modifier.height(60.dp)) {
-
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .height(60.dp)
+                    .background(
+                        MaterialTheme.colorScheme.primaryContainer,
+                        RoundedCornerShape(16.dp)
+                    )
+                    .padding(horizontal = 16.dp)
+            ) {
+                Image(painterResource(id = uiState.travelIcon), "",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.size(32.dp))
             }
 
-            Box(modifier = Modifier.height(60.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .height(60.dp)
+                    .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
+                    .padding(horizontal = 16.dp)
+            ) {
+                Image(painterResource(id = uiState.durationInfo.icon), "",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.size(32.dp))
 
+                Text(text = uiState.durationInfo.text,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onPrimary)
             }
 
-            Box(modifier = Modifier.height(72.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .height(60.dp)
+                    .background(
+                        MaterialTheme.colorScheme.primaryContainer,
+                        RoundedCornerShape(16.dp)
+                    )
+                    .padding(horizontal = 16.dp)
+            ) {
+                Image(painterResource(id = uiState.distanceInfo.icon), "",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.size(32.dp))
 
+                Text(text = uiState.distanceInfo.text,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.primary)
             }
 
-            Box(modifier = Modifier.clip(RoundedCornerShape(8.dp)).border(2.dp,MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
+            Spacer(modifier = Modifier.height(12.dp))
+
+
+            Box(modifier = Modifier
+                .clip(RoundedCornerShape(8.dp))
+                .border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
                 Image(painter = painterResource(id = uiState.to.image),
                     contentDescription = "image description",
                     contentScale = ContentScale.Fit,
