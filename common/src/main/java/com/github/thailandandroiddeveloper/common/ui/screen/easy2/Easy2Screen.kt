@@ -2,22 +2,90 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.Tertiary
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryContainer
+import com.github.thailandandroiddeveloper.common.ui.theme.Typography
 
 @Composable
 private fun Easy2Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 2")
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(TertiaryContainer)
+    ) {
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .padding(top = 16.dp)
+            ) {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        painter = painterResource(id = uiState.menuIcon),
+                        contentDescription = null,
+                        tint = Color.Unspecified
+                    )
+                }
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(221.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Surface(
+                    shape = CircleShape,
+                    border = BorderStroke(width = 4.dp, color = Tertiary)
+                ) {
+                    Icon(
+                        painter = painterResource(id = uiState.profileImage),
+                        contentDescription = null,
+                        tint = Color.Unspecified
+                    )
+                }
+                Text(text = uiState.displayName, style = Typography.titleLarge)
+                Spacer(modifier = )
+            }
+
+            Column(
+                Modifier
+                    .background(color = Color.White)
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+            ) {
+
+            }
+        }
     }
 }
 
