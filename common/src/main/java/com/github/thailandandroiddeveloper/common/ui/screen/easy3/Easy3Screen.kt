@@ -2,22 +2,63 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy3
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Easy3Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 3")
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                ),
+                title = {
+                    Text(text = "")
+                },
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 148.dp)
+                    .padding(horizontal = 16.dp)
+                    .background(
+                        MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(32.dp)
+                    ),
+                verticalArrangement = Arrangement.Center,
+            ) {
+
+            }
+        }
     }
 }
 
