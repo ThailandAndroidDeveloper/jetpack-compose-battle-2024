@@ -2,23 +2,291 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+
 @Composable
 private fun Medium1Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(232.dp)
+                .background(Color(0xFFFFD8E4))
+        ) {
+            Text(
+                text = uiState.title,
+                style = TextStyle(
+                    fontSize = 28.sp,
+                    letterSpacing = 0.5.sp,
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .padding(top = 34.dp)
+                    .padding(horizontal = 32.dp)
+                    .fillMaxWidth()
+            )
+            Text(
+                text = uiState.subtitle,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    color = Color(0xFF7D5260),
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .padding(horizontal = 32.dp)
+                    .padding(top = 88.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .padding(top = 176.dp)
+                    .width(241.dp)
+                    .height(40.dp)
+                    .background(Color.White, shape = RoundedCornerShape(8.dp))
+                    .align(Alignment.TopCenter)
+            ) {
+                Text(
+                    text = uiState.searchHint,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 10.dp)
+                        .padding(start = 16.dp),
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        letterSpacing = 0.25.sp,
+                    )
+
+                )
+                Box(
+                    modifier = Modifier
+                        .padding(end = 4.dp)
+                        .width(32.dp)
+                        .height(32.dp)
+                        .background(Color(0xFF7D5260), shape = RoundedCornerShape(8.dp))
+                        .align(Alignment.CenterEnd)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_medium_1_search),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.Center),
+                        tint = Color.White,
+                    )
+                }
+            }
+        }
+        Row {
+            Column(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .width(68.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(start = 32.dp)
+                        .height(36.dp)
+                        .width(36.dp)
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFE7E0EC),
+                            shape = RoundedCornerShape(size = 8.dp)
+                        )
+                        .background(Color.White, shape = RoundedCornerShape(8.dp))
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_medium_1_activity_1),
+                        contentDescription = "",
+                        tint = Color(0xFF7D5260),
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                Column(modifier = Modifier.padding(start = 48.dp)) {
+                    repeat(31) {
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 4.dp)
+                                .width(4.dp)
+                                .height(4.dp)
+                                .background(Color(0xFFE7E0EC), shape = RoundedCornerShape(10.dp))
+                        )
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .padding(start = 32.dp)
+                        .height(36.dp)
+                        .width(36.dp)
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFE7E0EC),
+                            shape = RoundedCornerShape(size = 8.dp)
+                        )
+                        .background(Color.White, shape = RoundedCornerShape(8.dp))
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_medium_1_activity_2),
+                        contentDescription = "",
+                        tint = Color(0xFF7D5260),
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                Column(modifier = Modifier.padding(start = 48.dp)) {
+                    repeat(25) {
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 4.dp)
+                                .width(4.dp)
+                                .height(4.dp)
+                                .background(Color(0xFFE7E0EC), shape = RoundedCornerShape(10.dp))
+                        )
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .padding(start = 32.dp)
+                        .height(36.dp)
+                        .width(36.dp)
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFE7E0EC),
+                            shape = RoundedCornerShape(size = 8.dp)
+                        )
+                        .background(Color.White, shape = RoundedCornerShape(8.dp))
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_medium_1_activity_3),
+                        contentDescription = "",
+                        tint = Color(0xFF7D5260),
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                Column(modifier = Modifier.padding(start = 48.dp)) {
+                    repeat(3) {
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 4.dp)
+                                .width(4.dp)
+                                .height(4.dp)
+                                .background(Color(0xFFE7E0EC), shape = RoundedCornerShape(10.dp))
+                        )
+                    }
+                }
+            }
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(start = 70.dp)
+//                    .background(Color.Blue)
+//                    .border(
+//                        width = 2.dp,
+//                        color = Color(0xFFE7E0EC),
+//                        shape = RoundedCornerShape(size = 8.dp)
+//                    )
+//            )
+            Column(
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .padding(end = 32.dp)
+                    .padding(top = 16.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(221.dp)
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFFE7E0EC),
+                            shape = RoundedCornerShape(size = 8.dp)
+                        )
+                ) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.img_medium_1_activity_1),
+                            contentDescription = "",
+                            modifier = Modifier.clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
+                        )
+                        Text(text = "Praesent faucibus",
+                            style = TextStyle(fontSize = 16.sp,letterSpacing = 0.15.sp,),
+                            modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+                        )
+                        Text(text = "Morbi feugiat posuere felis, luctus fringilla mauris semper vel.",
+                            style = TextStyle(letterSpacing = 0.5.sp, fontSize = 16.sp),
+                            modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+                        )
+//                        Row {
+//                            Text(
+//                                text = "Detail",
+//                                style = Text
+//                            )
+//                        }
+                    }
+                }
+            }
+        }
+        Box(
+            modifier = Modifier
+                .height(80.dp)
+                .fillMaxWidth()
+                .background(Color(0xFFFFD8E4))
+        ) {
+            Row {
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 12.dp)
+                            .padding(start = 31.17.dp)
+                            .width(64.dp)
+                            .height(32.dp)
+                            .background(Color(0xFFEFB8C8), shape = RoundedCornerShape(16.dp))
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_medium_1_explore),
+                            contentDescription = "",
+                            tint = Color(0xFF1D1B20),
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
+                    Text(
+                        text = "Explore",
+                        style = TextStyle(textAlign = TextAlign.Center),
+                        modifier = Modifier
+                            .width(126.33.dp)
+                            .padding(start = 8.dp)
+                    )
+                }
+            }
+        }
     }
 }
 
