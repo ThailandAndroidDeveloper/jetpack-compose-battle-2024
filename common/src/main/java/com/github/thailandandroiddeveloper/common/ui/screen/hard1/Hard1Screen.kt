@@ -77,7 +77,9 @@ private fun Hard1Screen(uiState: UiState) {
                 verticalArrangement = Arrangement.Center,
             ) {
                 if (configuration.screenWidthDp <= 500) {
-                    Box(modifier = Modifier.height(148.dp))
+                    Box(modifier = Modifier
+                        .height(148.dp)
+                        .background(Color.White))
                 }
                 if (configuration.screenWidthDp > 500)
                     LazyVerticalGrid(
