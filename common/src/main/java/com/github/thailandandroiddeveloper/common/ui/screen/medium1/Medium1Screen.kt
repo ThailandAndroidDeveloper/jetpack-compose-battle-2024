@@ -6,10 +6,12 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,35 +30,39 @@ import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 private fun Medium1Screen(uiState: UiState) {
     Column {
         Column(
-            modifier = Modifier
-                .background(
-                    MaterialTheme.colorScheme.tertiaryContainer
-                )
+            modifier = Modifier.background(
+                MaterialTheme.colorScheme.tertiaryContainer
+            )
         ) {
             Text(
-                modifier = Modifier
-                    .padding(
-                        top = 34.dp,
-                        start = 32.dp,
-                        end = 32.dp,
-                    ),
+                modifier = Modifier.padding(
+                    top = 34.dp,
+                    start = 32.dp,
+                    end = 32.dp,
+                ),
                 text = uiState.title,
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.onTertiaryContainer
             )
             Text(
-                modifier = Modifier
-                    .padding(
-                        top = 16.dp,
-                        start = 32.dp,
-                        end = 32.dp,
-                    ),
+                modifier = Modifier.padding(
+                    top = 16.dp,
+                    start = 32.dp,
+                    end = 32.dp,
+                ),
                 text = uiState.subtitle,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.tertiary
             )
 
             OutlinedTextField(
+                placeholder = {
+                    Text(
+                        text = uiState.searchHint,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onTertiaryContainer
+                    )
+                },
                 modifier = Modifier
                     .align(
                         alignment = Alignment.CenterHorizontally
@@ -64,10 +70,13 @@ private fun Medium1Screen(uiState: UiState) {
                     .padding(
                         top = 16.dp
                     )
+                    .height(40.dp)
                     .width(241.dp),
-                value = "", onValueChange = {},
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary
+                value = "",
+                onValueChange = {},
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
