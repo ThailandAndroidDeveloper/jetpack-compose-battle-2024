@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -80,30 +79,27 @@ private fun Medium1Screen(uiState: UiState) {
         Box(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxSize()
         ) {
             Box(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.tertiaryContainer)
-                    .padding(
-                        top = 34.dp,
-                        start = 32.dp,
-                        end = 32.dp,
-                        bottom = 16.dp
-                    )
+
 
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(232.dp),
+                        .height(232.dp)
+                        .padding(horizontal = 32.dp)
+                    ,
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Text(
-                        text = uiState.title,
-                        style = MaterialTheme.typography.headlineMedium,
+                        modifier = Modifier.padding(top = 34.dp
+                    ),
+                    text = uiState.title,
+                    style = MaterialTheme.typography.headlineMedium,
                     )
                     Text(
                         text = uiState.subtitle,
