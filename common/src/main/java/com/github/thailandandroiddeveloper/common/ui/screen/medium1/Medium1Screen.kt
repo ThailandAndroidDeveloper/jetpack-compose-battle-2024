@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
@@ -124,69 +125,112 @@ private fun Medium1Screen(uiState: UiState) {
                     }
                 }
             }
-            NavigationBar(modifier = Modifier.align(Alignment.BottomStart)) {
-
+            NavigationBar(
+                modifier = Modifier.align(Alignment.BottomStart),
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+            ) {
+                Row {
+                    Nav(menu = uiState.menus[0], Modifier.weight(1f))
+                    Nav(menu = uiState.menus[1], weight = Modifier.weight(1f))
+                    Nav(menu = uiState.menus[2], weight = Modifier.weight(1f))
+                }
             }
         }
     }
 }
 
 @Composable
-private fun CardDetail(activity: Activity) {
+private fun Nav(menu: Menu, weight: Modifier) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .border(2.dp, MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.onTertiary)
+        modifier = weight,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = activity.preview),
-            contentDescription = "",
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(painter = painterResource(id = menu.icon), contentDescription = "")
+        }
+        Text(
+            text = menu.text,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+    }
+
+}
+
+@Composable
+private fun CardDetail(activity: Activity) {
+    Row {
+        Column(
+            modifier = Modifier
+                .background(color = MaterialTheme.colorScheme.onTertiary)
+                .border(2.dp, MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp))
+                .padding(horizontal = 11.dp, vertical = 8.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = activity.icon),
+                contentDescription = "",
+                tint = MaterialTheme.colorScheme.tertiary,
+            )
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(
-                    RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
-                ),
-            contentScale = ContentScale.FillWidth
-        )
-        Column(
-            modifier = Modifier.padding(
-                top = 8.dp,
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 16.dp
-            )
+                .clip(RoundedCornerShape(8.dp))
+                .border(2.dp, MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.onTertiary)
         ) {
-            Text(
-                text = activity.title,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onTertiaryContainer
-            )
-            Text(
-                text = activity.content,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.tertiary
-            )
-
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                TextButton(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.tertiary,
-                        containerColor = Color.Transparent
-                    )
-                ) {
-                    Text(text = activity.detail)
-                }
-                Button(
-                    onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            Image(
+                painter = painterResource(id = activity.preview),
+                contentDescription = "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(82.dp)
+                    .clip(
+                        RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
                     ),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Text(text = activity.action)
+                contentScale = ContentScale.FillWidth
+            )
+            Column(
+                modifier = Modifier.padding(
+                    top = 8.dp,
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 16.dp
+                )
+            ) {
+                Text(
+                    text = activity.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                )
+                Text(
+                    text = activity.content,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                    TextButton(
+                        onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor = MaterialTheme.colorScheme.tertiary,
+                            containerColor = Color.Transparent
+                        )
+                    ) {
+                        Text(text = activity.detail)
+                    }
+                    Button(
+                        onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
+                            contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(text = activity.action)
+                    }
                 }
             }
         }
