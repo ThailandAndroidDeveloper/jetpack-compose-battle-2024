@@ -196,7 +196,8 @@ private fun Medium1Screen(uiState: UiState) {
                                         Spacer(modifier = Modifier.height(16.dp))
                                         LinearProgressIndicator(
                                             strokeCap = StrokeCap.Round,
-                                            modifier = Modifier.fillMaxWidth()
+                                            modifier = Modifier
+                                                .fillMaxWidth()
                                                 .height(8.dp)
                                                 .clip(RoundedCornerShape(8.dp))
                                         )
