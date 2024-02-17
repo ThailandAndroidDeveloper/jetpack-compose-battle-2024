@@ -3,21 +3,37 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
 @Composable
 private fun Easy2Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 2")
+    Column {
+        Box(
+            modifier = Modifier
+                .height(221.dp)
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.tertiaryContainer)
+        ) {
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.onTertiary)
+        ) {
+        }
     }
 }
 
