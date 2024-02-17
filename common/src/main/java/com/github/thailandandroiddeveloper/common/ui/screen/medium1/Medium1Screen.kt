@@ -21,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
@@ -130,9 +131,9 @@ private fun Medium1Screen(uiState: UiState) {
                 containerColor = MaterialTheme.colorScheme.tertiaryContainer
             ) {
                 Row {
-                    Nav(menu = uiState.menus[0], Modifier.weight(1f))
-                    Nav(menu = uiState.menus[1], weight = Modifier.weight(1f))
-                    Nav(menu = uiState.menus[2], weight = Modifier.weight(1f))
+                    Nav(menu = uiState.menus[0], Modifier.weight(1f), true)
+                    Nav(menu = uiState.menus[1], weight = Modifier.weight(1f), false)
+                    Nav(menu = uiState.menus[2], weight = Modifier.weight(1f), false)
                 }
             }
         }
@@ -140,13 +141,20 @@ private fun Medium1Screen(uiState: UiState) {
 }
 
 @Composable
-private fun Nav(menu: Menu, weight: Modifier) {
+private fun Nav(menu: Menu, weight: Modifier, b: Boolean) {
     Column(
         modifier = weight,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        val colorCheck =
+            if (b) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.tertiaryContainer
+        IconButton(
+            onClick = { /*TODO*/ }, colors = IconButtonDefaults.iconButtonColors(
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                containerColor = colorCheck
+            ),
+        ) {
             Icon(painter = painterResource(id = menu.icon), contentDescription = "")
         }
         Text(
