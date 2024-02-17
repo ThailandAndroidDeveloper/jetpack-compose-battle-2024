@@ -2,23 +2,88 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Medium1Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
+    Scaffold(
+        bottomBar = {
+            NavigationBar(
+                modifier = Modifier.height(80.dp),
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            ) {
+                uiState.menus.forEach {
+                    NavigationBarItem(
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                            selectedTextColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                            unselectedIconColor = MaterialTheme.colorScheme.onSurface,
+                            unselectedTextColor = MaterialTheme.colorScheme.onSurface,
+                            indicatorColor = MaterialTheme.colorScheme.tertiary
+                        ),
+                        selected = it.selected, onClick = { /*TODO*/ },
+                        icon = {
+                            BadgedBox(badge = {
+                                if (it.notificationCount != null) {
+                                    Badge {
+                                        Text(text = "${it.notificationCount}")
+                                    }
+                                }
+                            }) {
+                                Icon(
+                                    painter = painterResource(id = it.icon),
+                                    contentDescription = null
+                                )
+                            }
+                        },
+                        label = { Text(text = it.text) }
+                    )
+                }
+            }
+
+        }
+    ) { paddingValues ->
+        Box(modifier = Modifier
+            .padding(paddingValues)
+            .fillMaxSize()
+        ) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .height(232.dp)
+                .background(MaterialTheme.colorScheme.tertiaryContainer)
+            ) {
+                Text(text = "Test")
+
+            }
+        }
+
     }
 }
 
