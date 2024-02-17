@@ -81,6 +81,41 @@ private fun Easy4Screen(uiState: UiState) {
 
             }
 
+            Box(modifier = Modifier.height(60.dp)) {
+
+            }
+
+            Box(modifier = Modifier.height(60.dp)) {
+
+            }
+
+            Box(modifier = Modifier.height(72.dp)) {
+
+            }
+
+            Box(modifier = Modifier.clip(RoundedCornerShape(8.dp)).border(2.dp,MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))) {
+                Image(painter = painterResource(id = uiState.to.image),
+                    contentDescription = "image description",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp) )
+
+                Row(modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.90f))
+                    .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 40.dp)) {
+
+                    Text(text = uiState.to.address,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimary)
+
+                }
+
+            }
+
         }
     }
 }
