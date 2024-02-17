@@ -37,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -194,7 +195,10 @@ private fun Medium1Screen(uiState: UiState) {
                                     if (act.progress != null) {
                                         Spacer(modifier = Modifier.height(16.dp))
                                         LinearProgressIndicator(
+                                            strokeCap = StrokeCap.Round,
                                             modifier = Modifier.fillMaxWidth()
+                                                .height(8.dp)
+                                                .clip(RoundedCornerShape(8.dp))
                                         )
                                         Spacer(modifier = Modifier.height(4.dp))
                                         Box(
