@@ -3,23 +3,96 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium2
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.PixelTablet
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
 @Composable
 private fun Medium2Screen(uiState: UiState) {
-    // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 2")
+    Row(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Drawer(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(300.dp), uiState = uiState
+        )
+        Content(
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(1f)
+        )
+        Message(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(320.dp)
+        )
     }
 }
+
+@Composable
+private fun Drawer(
+    modifier: Modifier = Modifier,
+    uiState: UiState,
+) {
+    Column(
+        modifier = modifier.background(MaterialTheme.colorScheme.onPrimary)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(96.dp)
+                .background(MaterialTheme.colorScheme.primary)
+                .padding(horizontal = 32.dp, vertical = 8.dp),
+            contentAlignment = Alignment.BottomStart,
+        ) {
+            Text(
+                text = uiState.menu.title,
+                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+    }
+}
+
+@Composable
+private fun Content(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.background(MaterialTheme.colorScheme.primaryContainer)
+    ) {
+
+    }
+}
+
+@Composable
+private fun Message(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.background(MaterialTheme.colorScheme.onPrimary)
+    ) {
+
+    }
+}
+
 
 @Preview(group = PixelTablet.name, device = PixelTablet.spec, showBackground = true)
 @Composable
