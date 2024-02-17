@@ -113,6 +113,7 @@ private fun Medium1Screen(uiState: UiState) {
 
             ) {
 
+
             }
         }
         Surface(
@@ -168,11 +169,12 @@ fun BottomIcon(menu: Menu) {
                                 .size(16.dp),
                             shape = CircleShape,
                         ) {
-                            
+
                             Text(
                                 text = menu.notificationCount.toString(),
                                 color = Color.White,
                                 style = Typography.labelSmall,
+                                modifier = Modifier.padding(start = 4.dp)
                             )
                         }
                     }

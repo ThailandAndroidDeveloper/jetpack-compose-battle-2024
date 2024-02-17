@@ -13,11 +13,14 @@ import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.preview.PixelTablet
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.Primary
 
 @Composable
 private fun Hard1Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Primary)) {
         Text(text = "Hard 1")
     }
 }
