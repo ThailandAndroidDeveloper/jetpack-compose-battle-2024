@@ -3,21 +3,114 @@ package com.github.thailandandroiddeveloper.common.ui.screen.easy2
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Easy2Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Easy 2")
+    Column(
+        modifier = Modifier
+
+    ) {
+        TopAppBar(
+            title = {},
+            navigationIcon = {
+                Icon(painter = painterResource(id = uiState.menuIcon), contentDescription = null)
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+            )
+        )
+        Column(
+            modifier = Modifier
+                .background(
+                    MaterialTheme.colorScheme.tertiaryContainer
+                )
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                modifier = Modifier
+                    .padding(
+                        top = 8.dp
+                    )
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.tertiary
+                        ),
+                        CircleShape
+                    )
+                    .clip(CircleShape),
+                painter = painterResource(id = uiState.profileImage),
+                contentDescription = null
+            )
+
+            Text(
+                modifier = Modifier
+                    .padding(
+                        top = 8.dp,
+                        bottom = 16.dp
+                    ),
+                style = MaterialTheme.typography.titleLarge,
+                text = uiState.displayName,
+                color = MaterialTheme.colorScheme.tertiary
+            )
+        }
+
+        LazyRow(
+            modifier = Modifier
+                .padding(
+                    top= 16.dp,
+                )
+                .padding(
+                    horizontal = 16.dp
+                )
+        ) {
+            items(uiState.tags) { tag ->
+                Text(
+                    modifier = Modifier
+                        .background(
+                            MaterialTheme.colorScheme.tertiary,
+                            RoundedCornerShape(
+                                100.dp
+                            )
+                        )
+                        .padding(
+                            horizontal = 22.5.dp,
+                            vertical = 10.dp
+                        ),
+                    text = tag
+                )
+            }
+        }
     }
 }
 
