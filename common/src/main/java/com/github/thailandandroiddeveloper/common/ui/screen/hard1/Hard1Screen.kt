@@ -58,11 +58,6 @@ private fun Hard1Screen(uiState: UiState) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            if (configuration.screenWidthDp > 500) {
-                BottomLeftMenu(uiState)
-            } else {
-                Box(modifier = Modifier.height(411.dp))
-            }
             val start = if (configuration.screenWidthDp > 500)
                 236.dp
             else
@@ -77,9 +72,11 @@ private fun Hard1Screen(uiState: UiState) {
                 verticalArrangement = Arrangement.Center,
             ) {
                 if (configuration.screenWidthDp <= 500) {
-                    Box(modifier = Modifier
-                        .height(148.dp)
-                        .background(Color.White))
+                    Box(
+                        modifier = Modifier
+                            .height(148.dp)
+                            .background(Color.White)
+                    )
                 }
                 if (configuration.screenWidthDp > 500)
                     LazyVerticalGrid(
@@ -114,6 +111,24 @@ private fun Hard1Screen(uiState: UiState) {
                             }
                         }
                     )
+            }
+
+            if (configuration.screenWidthDp > 500) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .width(300.dp)
+                        .height(100.dp)
+                        .background(Color.White)
+                )
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .width(100.dp)
+                        .height(150.dp)
+                        .background(Color.White)
+                )
+                BottomLeftMenu(uiState)
             }
         }
     }
@@ -227,8 +242,8 @@ private fun BoxScope.BottomLeftMenu(uiState: UiState) {
                 color = MaterialTheme.colorScheme.background,
                 shape = RoundedCornerShape(12.dp)
             )
-            .width(200.dp)
-            .height(200.dp),
+            .width(156.dp)
+            .height(337.dp),
         verticalArrangement = Arrangement.Center,
     ) {
         uiState.primaryMenus.forEachIndexed { index, primaryMenu ->
