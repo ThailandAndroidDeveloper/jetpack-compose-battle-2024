@@ -2,23 +2,124 @@ package com.github.thailandandroiddeveloper.common.ui.screen.medium1
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.github.thailandandroiddeveloper.common.R
 import com.github.thailandandroiddeveloper.common.ui.preview.Pixel7
 import com.github.thailandandroiddeveloper.common.ui.theme.AppTheme
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.Tertiary
+import com.github.thailandandroiddeveloper.common.ui.theme.LightColors.TertiaryContainer
+import com.github.thailandandroiddeveloper.common.ui.theme.Typography
 
 @Composable
 private fun Medium1Screen(uiState: UiState) {
     // TODO
-    Box(modifier = Modifier.fillMaxSize().background(Color.Green)) {
-        Text(text = "Medium 1")
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Column(verticalArrangement = Arrangement.SpaceBetween) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(232.dp),
+                color = TertiaryContainer
+            ) {
+                Column(
+                    modifier = Modifier.padding(horizontal = 32.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(34.dp))
+                    Text(
+                        text = uiState.title,
+                        style = Typography.headlineMedium,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = uiState.subtitle,
+                        style = Typography.bodyLarge,
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 3,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = Color.White,
+                        modifier = Modifier
+                            .width(241.dp)
+                            .height(40.dp)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier.padding(end = 4.dp)
+                        ) {
+                            Text(
+                                text = uiState.searchHint,
+                                style = Typography.bodyMedium,
+                                modifier = Modifier.padding(vertical = 10.dp, horizontal = 16.dp)
+                            )
+                            Surface(
+                                color = Tertiary, shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_medium_1_search),
+                                    contentDescription = null,
+                                    tint = Color.Unspecified,
+                                    modifier = Modifier.padding(4.dp)
+                                )
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+
+            ) {
+
+            }
+        }
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .height(80.dp),
+            color = TertiaryContainer
+        ) {
+
+        }
     }
 }
 
@@ -93,7 +194,7 @@ private data class UiState(
     val searchHint: String,
     @DrawableRes val searchIcon: Int,
     val activities: List<Activity>,
-    val menus: List<Menu>,
+    val menus: List<com.github.thailandandroiddeveloper.common.ui.screen.medium1.Menu>,
 )
 
 private data class Activity(
