@@ -76,7 +76,8 @@ private fun Easy3Screen(uiState: UiState) {
         Text(
             modifier = Modifier
                 .padding(
-                    start = 48.dp
+                    start = 48.dp,
+                    top = 8.dp,
                 ),
             text = uiState.title,
             style = MaterialTheme.typography.headlineMedium,
@@ -108,19 +109,21 @@ private fun Easy3Screen(uiState: UiState) {
                     )
                 ),
             contentPadding = PaddingValues(
-                top = 20.dp,
+                top = 18.dp,
             )
         ) {
             items(uiState.friend.friends) { friend ->
                 Row(
                     modifier = Modifier
                         .padding(
-                            horizontal = 32.dp
+                            start = 32.dp,
+                            end =  16.dp
                         ),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Image(
                         modifier = Modifier
+                            .size(48.dp)
                             .clip(CircleShape),
                         painter = painterResource(id = friend.image),
                         contentDescription = null
