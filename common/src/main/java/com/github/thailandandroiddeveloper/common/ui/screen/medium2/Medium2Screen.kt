@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -59,12 +60,51 @@ private fun Medium2Screen(uiState: UiState) {
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(660.dp)
+                    .padding(horizontal = 48.dp)
+                    .padding(top = 8.dp)
                     .background(
                         MaterialTheme.colorScheme.background,
                         shape = RoundedCornerShape(32.dp)
                     ),
-                verticalArrangement = Arrangement.Center,
             ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(168.dp)
+                        .background(
+                            Color.White,
+                            shape = RoundedCornerShape(16.dp)
+                        ),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(340.dp)
+                        .background(
+                            Color.White,
+                            shape = RoundedCornerShape(16.dp)
+                        ),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(340.dp)
+                        .background(
+                            Color.White,
+                            shape = RoundedCornerShape(16.dp)
+                        ),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+
+                }
 
             }
             Column(
@@ -80,6 +120,22 @@ private fun Medium2Screen(uiState: UiState) {
 
             }
         }
+    }
+}
+
+@Composable
+fun PostItem() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(168.dp)
+            .background(
+                MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(16.dp)
+            ),
+        verticalArrangement = Arrangement.Center,
+    ) {
+
     }
 }
 
